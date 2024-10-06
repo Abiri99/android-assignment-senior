@@ -1,7 +1,17 @@
 package com.adyen.android.assignment.ui
 
+import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material3.Text
 
 class MainActivity : ComponentActivity() {
-    // TODO: Placeholder activity that may be used
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setContent {
+            Text("Hello Adyen!")
+        }
+    }
 }
