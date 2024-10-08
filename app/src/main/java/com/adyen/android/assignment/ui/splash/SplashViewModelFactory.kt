@@ -4,6 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.adyen.android.assignment.data.repository.PlacesRepository
 
+/**
+ * This factory helps us letting the ViewModelProvider know how an instance of this ViewModel
+ * should be created with it's dependencies.
+ */
 class SplashViewModelFactory(
     private val placesRepository: PlacesRepository
 ) : ViewModelProvider.Factory {

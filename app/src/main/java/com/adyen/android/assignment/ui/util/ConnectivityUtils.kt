@@ -6,6 +6,10 @@ import android.net.NetworkCapabilities
 import android.provider.Settings
 import androidx.core.content.getSystemService
 
+/**
+ * This utility helps us identify network issues more effectively, allowing us to display a
+ * more informative message to the user.
+ */
 object ConnectivityUtils {
     fun isInternetAvailable(context: Context): Boolean {
         val connectivityManager = context.getSystemService<ConnectivityManager>()

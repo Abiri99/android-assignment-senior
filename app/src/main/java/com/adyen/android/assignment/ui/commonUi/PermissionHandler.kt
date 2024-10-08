@@ -24,6 +24,10 @@ import com.google.accompanist.permissions.shouldShowRationale
 
 private const val TAG = "PermissionHandler"
 
+/**
+ * A utility to help requesting permission according to the flow suggested by Google
+ * in our Jetpack Compose code.
+ */
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun PermissionHandler(
@@ -46,7 +50,7 @@ fun PermissionHandler(
                 onGranted()
             } else {
                 if (showRationale) {
-                    // already shown a rationale to the user but they haven't accepted
+                    // Already shown a rationale to the user but they haven't accepted
                     requestPermission = false
                     onDegradeFunctionality()
                 } else {

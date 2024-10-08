@@ -5,6 +5,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.adyen.android.assignment.data.repository.PlacesRepository
 import com.adyen.android.assignment.domain.CategorizeAndSortPlacesUseCase
 
+/**
+ * This factory helps us letting the ViewModelProvider know how an instance of this ViewModel
+ * should be created with it's dependencies.
+ */
 class PlacesViewModelFactory(
     private val categorizeAndSortPlacesUseCase: CategorizeAndSortPlacesUseCase,
     private val placesRepository: PlacesRepository

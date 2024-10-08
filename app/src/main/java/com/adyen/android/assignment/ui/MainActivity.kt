@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
 
         // End creating dependencies
 
-        // Window decoration
+        // Window decoration (For the purpose of better UI)
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
         val insetsController = WindowInsetsControllerCompat(window, window.decorView)
@@ -51,16 +51,15 @@ class MainActivity : ComponentActivity() {
 
             val screenModifier = Modifier.fillMaxSize()
 
-            // TODO: When the app gets bigger, it's better to hold the screen keys in a variable to prevent typos.
+            // Note: When the app gets bigger, it's better to hold the screen keys in a variable to prevent typos.
             NavHost(navController, startDestination = "splash") {
                 composable("splash") { backStackEntry ->
                     val splashViewModelFactory = remember {
                         SplashViewModelFactory(placesRepository)
                     }
 
-                    // viewmodel lifecycle bounds to the scope of SplashScreen
                     val splashViewModel: SplashViewModel = viewModel(
-                        viewModelStoreOwner = backStackEntry,
+                        viewModelStoreOwner = backStackEntry, // Binding the lifecycle of the viewmodel to the navigation stack
                         factory = splashViewModelFactory
                     )
 
@@ -84,7 +83,7 @@ class MainActivity : ComponentActivity() {
                     }
 
                     val placesViewModel: PlacesViewModel = viewModel(
-                        viewModelStoreOwner = backStackEntry,
+                        viewModelStoreOwner = backStackEntry, // Binding the lifecycle of the viewmodel to the navigation stack
                         factory = placesViewModelFactory
                     )
 

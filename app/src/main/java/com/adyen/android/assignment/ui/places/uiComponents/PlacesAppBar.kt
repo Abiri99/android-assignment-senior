@@ -31,13 +31,9 @@ fun PlacesAppBar() {
     TopAppBar(
         modifier = Modifier
             .requiredHeightIn(
-                min = WindowInsets.safeContent
-                    .asPaddingValues()
-                    .calculateTopPadding() +
-                    WindowInsets.safeDrawing
-                        .asPaddingValues()
-                        .calculateTopPadding() +
-                    68.dp // TODO: Align this height with UX and Google Guidelines
+                min = WindowInsets.safeContent.asPaddingValues().calculateTopPadding() +
+                    WindowInsets.safeDrawing.asPaddingValues().calculateTopPadding() +
+                    68.dp // To be improved: Align this height with UX and Google Guidelines
             )
             .shadow(
                 elevation = 8.dp
@@ -54,9 +50,7 @@ fun PlacesAppBar() {
             Text(
                 modifier = if (configuration.orientation == ORIENTATION_LANDSCAPE) {
                     titleBaseModifier.padding(
-                        start = WindowInsets.safeDrawing.asPaddingValues().calculateStartPadding(
-                            LayoutDirection.Ltr
-                        ) +
+                        start = WindowInsets.safeDrawing.asPaddingValues().calculateStartPadding(LayoutDirection.Ltr) +
                             WindowInsets.safeContent.asPaddingValues().calculateStartPadding(LayoutDirection.Ltr)
                     )
                 } else {

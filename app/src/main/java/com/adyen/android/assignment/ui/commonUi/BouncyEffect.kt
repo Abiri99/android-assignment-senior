@@ -14,6 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 
+/**
+ * A wrapper to make composables bouncy when clicked.
+ * (For the sake of more engaging UI)
+ */
 @Composable
 fun BouncyEffect(
     modifier: Modifier = Modifier,

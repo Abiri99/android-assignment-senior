@@ -12,10 +12,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -32,6 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.adyen.android.assignment.ui.commonUi.Colors
+import com.adyen.android.assignment.ui.commonUi.ErrorDialog
 import com.adyen.android.assignment.ui.commonUi.InternetAvailabilityChecker
 import com.adyen.android.assignment.ui.commonUi.PermissionHandler
 import com.google.android.gms.location.LocationServices
@@ -140,29 +139,6 @@ private fun SplashScreenContent(
             )
         }
     }
-}
-
-@Composable
-private fun ErrorDialog(
-    message: String,
-    onRetry: () -> Unit,
-    onExit: () -> Unit
-) {
-    AlertDialog(
-        onDismissRequest = onRetry, // We can discuss this behaviour with UX team
-        confirmButton = {
-            TextButton(onClick = onRetry) {
-                Text("Retry")
-            }
-        },
-        dismissButton = {
-            TextButton(onClick = onExit) {
-                Text("Exit")
-            }
-        },
-        title = { Text("Error") },
-        text = { Text(message) }
-    )
 }
 
 // End Composables

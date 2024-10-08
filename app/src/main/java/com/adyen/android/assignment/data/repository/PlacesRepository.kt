@@ -11,7 +11,7 @@ class PlacesRepository(
     private val placesService: PlacesService,
     private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
-    @Volatile
+    @Volatile // @Volatile seems enough in this case. No need for more strict thread safety approach for now.
     private var cachedPlaces: List<Place>? = null
 
     fun getCachedPlaces(): List<Place> {
@@ -20,6 +20,7 @@ class PlacesRepository(
         }
     }
 
+    // Nice to have in future: Checking if the coroutine is cancelled in the method
     suspend fun fetchPlacesNearby(latitude: Double, longitude: Double): List<Place> =
         withContext(coroutineDispatcher) {
             val query = VenueRecommendationsQueryBuilder()

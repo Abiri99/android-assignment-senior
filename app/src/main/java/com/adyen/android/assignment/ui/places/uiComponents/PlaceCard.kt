@@ -40,10 +40,7 @@ fun PlaceCard(
                     shadowElevation = shadow
                 }
                 .background(color = Color.White, shape = RoundedCornerShape(8.dp))
-                .padding(
-                    horizontal = 16.dp,
-                    vertical = 8.dp
-                ),
+                .padding(horizontal = 16.dp, vertical = 8.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
