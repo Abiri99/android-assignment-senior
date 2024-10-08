@@ -1,8 +1,12 @@
 # Result
-![Screen Recording](assets/screen_recording.gif)
-![](assets/screenshot1.png)
-![](assets/screenshot2.png)
-![](assets/screenshot3.png)
+<img src="assets/screen_recording.gif" height="200"/>
+<img src="assets/screenshot1.png" height="200"/>
+<img src="assets/screenshot2.png" width="400"/>
+<img src="assets/screenshot3.png" height="200"/>
+[//]: # (![Screen Recording]&#40;assets/screen_recording.gif&#41;)
+[//]: # (![]&#40;assets/screenshot1.png&#41;)
+[//]: # (![]&#40;assets/screenshot2.png&#41;)
+[//]: # (![]&#40;assets/screenshot3.png&#41;)
 
 # Adyen Android Assignment
 
