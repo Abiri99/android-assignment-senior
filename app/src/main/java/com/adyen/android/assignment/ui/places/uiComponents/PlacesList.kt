@@ -31,7 +31,7 @@ import com.adyen.android.assignment.ui.commonUi.ListItemTransitionEffect
 @Composable
 fun PlacesList(
     modifier: Modifier = Modifier,
-    items: Map<String, List<Place>>
+    data: Map<String, List<Place>>
 ) {
     val configuration = LocalConfiguration.current
 
@@ -53,7 +53,7 @@ fun PlacesList(
             Spacer(modifier = Modifier.height(24.dp))
         }
 
-        items.entries.forEach { entry ->
+        data.entries.forEach { entry ->
             item {
                 ListItemTransitionEffect(
                     key = entry.key + entry.value.size,

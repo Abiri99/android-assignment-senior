@@ -38,7 +38,7 @@ fun PlacesScreen(
                     PlacesAppBar()
                     PlacesList(
                         modifier = Modifier.fillMaxSize(),
-                        items = (uiState as PlacesUiState.ItemsCategorizedAndSorted).items
+                        data = (uiState as PlacesUiState.ItemsCategorizedAndSorted).items
                     )
                 }
             } else {

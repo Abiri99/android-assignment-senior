@@ -42,7 +42,7 @@ class SplashViewModel(
                 placesRepository.fetchPlacesNearby(lat, long)
                 _uiState.value = SplashUiState.Success
                 break
-            } catch (e: Exception) {
+            } catch (e: Exception) { // TODO: catch more concise exceptions and let the others propagate
                 if (e is UnauthorizedHttpException) {
                     _uiState.value = SplashUiState.Error("Please log in again.")
                     break

@@ -14,6 +14,9 @@ import androidx.compose.ui.graphics.graphicsLayer
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+private const val TRANSITION_DELAY = 50L
+private const val TRANSITION_DURATION = 500
+
 @Composable
 fun ListItemTransitionEffect(
     key: Any,
@@ -30,25 +33,25 @@ fun ListItemTransitionEffect(
     val zIndex = remember { Animatable(0f) }
 
     LaunchedEffect(key1 = key) {
-        delay(index * 50L) // Delay each item's animation by 30 milliseconds
+        delay(index * TRANSITION_DELAY) // Delay each item's animation by 50 milliseconds
         isVisible = true
         if (translationEffectEnabled) {
             coroutineScope.launch {
                 offsetY.animateTo(
                     targetValue = 0f,
-                    animationSpec = tween(durationMillis = 500)
+                    animationSpec = tween(durationMillis = TRANSITION_DURATION)
                 )
             }
         }
         coroutineScope.launch {
             opacity.animateTo(
                 targetValue = 1f,
-                animationSpec = tween(durationMillis = 500)
+                animationSpec = tween(durationMillis = TRANSITION_DURATION)
             )
         }
         zIndex.animateTo(
             targetValue = 8f,
-            animationSpec = tween(durationMillis = 500)
+            animationSpec = tween(durationMillis = TRANSITION_DURATION)
         )
     }
 
