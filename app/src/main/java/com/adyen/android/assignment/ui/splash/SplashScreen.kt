@@ -55,7 +55,7 @@ fun SplashScreen(
     val amsterdamLong = 4.9041
 
     LaunchedEffect(uiState) {
-        if (uiState is SplashState.Success) {
+        if (uiState is SplashUiState.Success) {
             navigateToPlacesScreenCallback()
         }
     }
@@ -86,11 +86,11 @@ fun SplashScreen(
 
     SplashScreenContent(
         modifier = modifier,
-        showLoadingIndicator = uiState == SplashState.Loading
+        showLoadingIndicator = uiState == SplashUiState.Loading
     )
 
-    if (uiState is SplashState.Error) {
-        val message = (uiState as SplashState.Error).message
+    if (uiState is SplashUiState.Error) {
+        val message = (uiState as SplashUiState.Error).message
         ErrorDialog(
             message = message,
             onRetry = {
