@@ -1,4 +1,8 @@
 # Result
+
+In the implementation, I've aimed to showcase my skills in different aspects of the code, and yet do it as simple as possible to make reading the code easier for you.
+Feel free to reach out if you have any questions 🙌🏻.
+
 <img src="assets/screen_recording.gif" height="300" style="display: inline-block; margin-right: 10px;"/>
 <img src="assets/screenshot1.png" height="300" style="display: inline-block; margin-right: 10px;"/>
 <img src="assets/screenshot3.png" height="300" style="display: inline-block; margin-right: 10px;"/>
