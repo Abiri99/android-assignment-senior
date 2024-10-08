@@ -81,21 +81,18 @@ class CashRegister(private val change: Change) {
         val countsUsed = Array(maxAmount + 1) { mutableMapOf<MonetaryElement, Int>() }
 
         for (currentAmount in 1..maxAmount) {
-            // e.g. currentAmount: €8
-            // e.g. monetaryElements: [€1 €2 €5 €10 €20]
             for (monetaryElement in monetaryElements) {
                 val monetaryValue = monetaryElement.minorValue
-                // e.g. monetaryValue: €5
                 if (monetaryValue <= currentAmount) {
-                    val prevAmount = currentAmount - monetaryValue // e.g. prevAmount: €3
+                    val previousAmount = currentAmount - monetaryValue
 
-                    if (minCoins[prevAmount] != Int.MAX_VALUE) {
-                        val prevCounts = countsUsed[prevAmount]
+                    if (minCoins[previousAmount] != Int.MAX_VALUE) {
+                        val prevCounts = countsUsed[previousAmount]
                         val usedCount = prevCounts.getOrDefault(monetaryElement, 0)
                         val availableCount = change.getCount(monetaryElement)
 
                         if (usedCount < availableCount) {
-                            val newCoinCount = minCoins[prevAmount] + 1
+                            val newCoinCount = minCoins[previousAmount] + 1
 
                             val shouldUpdate = when {
                                 newCoinCount < minCoins[currentAmount] -> true

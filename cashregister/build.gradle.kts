@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.jetbrains.kotlin.jvm)
+    id("org.jlleitschuh.gradle.ktlint")
+    id("io.gitlab.arturbosch.detekt")
 }
 
 java {
