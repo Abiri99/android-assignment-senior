@@ -12,8 +12,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class SplashViewModel(
-    private val placesRepository: PlacesRepository,
-): ViewModel() {
+    private val placesRepository: PlacesRepository
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow<SplashState>(SplashState.Loading)
     val uiState: StateFlow<SplashState> = _uiState

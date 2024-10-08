@@ -1,4 +1,4 @@
-package com.adyen.android.assignment.ui.common_ui
+package com.adyen.android.assignment.ui.commonUi
 
 import android.Manifest
 import android.content.Intent
@@ -29,7 +29,7 @@ private const val TAG = "PermissionHandler"
 fun PermissionHandler(
     permission: String,
     onGranted: () -> Unit,
-    onDegradeFunctionality: () -> Unit,
+    onDegradeFunctionality: () -> Unit
 ) {
     val context = LocalContext.current
 

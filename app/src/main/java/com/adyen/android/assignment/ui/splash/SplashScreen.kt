@@ -31,9 +31,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.adyen.android.assignment.ui.common_ui.Colors
-import com.adyen.android.assignment.ui.common_ui.InternetAvailabilityChecker
-import com.adyen.android.assignment.ui.common_ui.PermissionHandler
+import com.adyen.android.assignment.ui.commonUi.Colors
+import com.adyen.android.assignment.ui.commonUi.InternetAvailabilityChecker
+import com.adyen.android.assignment.ui.commonUi.PermissionHandler
 import com.google.android.gms.location.LocationServices
 
 private const val TAG = "SplashScreen"
@@ -44,7 +44,7 @@ private const val TAG = "SplashScreen"
 fun SplashScreen(
     modifier: Modifier = Modifier,
     viewModel: SplashViewModel,
-    navigateToPlacesScreenCallback: () -> Unit,
+    navigateToPlacesScreenCallback: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val context = LocalContext.current
@@ -75,18 +75,18 @@ fun SplashScreen(
             fetchLocation(context) { lat, long ->
                 viewModel.fetchPlacesNearby(
                     lat = requireNotNull(lat) { "Failed to get users location despite having permission." },
-                    long = requireNotNull(long) { "Failed to get users location despite having permission." },
+                    long = requireNotNull(long) { "Failed to get users location despite having permission." }
                 )
             }
         },
         onDegradeFunctionality = {
             viewModel.fetchPlacesNearby(amsterdamLat, amsterdamLong)
-        },
+        }
     )
 
     SplashScreenContent(
         modifier = modifier,
-        showLoadingIndicator = uiState == SplashState.Loading,
+        showLoadingIndicator = uiState == SplashState.Loading
     )
 
     if (uiState is SplashState.Error) {
@@ -107,18 +107,18 @@ fun SplashScreen(
 @Composable
 private fun SplashScreenContent(
     modifier: Modifier = Modifier,
-    showLoadingIndicator: Boolean,
+    showLoadingIndicator: Boolean
 ) {
     Box(
-        modifier = modifier.background(Colors.adyenGreenColor),
+        modifier = modifier.background(Colors.adyenGreenColor)
     ) {
         Column(
             modifier = Modifier.align(BiasAlignment(0.0f, 0.0f)),
-            horizontalAlignment = Alignment.CenterHorizontally,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
                 text = "🌎",
-                fontSize = 42.sp,
+                fontSize = 42.sp
             )
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -129,14 +129,14 @@ private fun SplashScreenContent(
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 48.sp,
-                color = Color.White,
+                color = Color.White
             )
         }
 
         if (showLoadingIndicator) {
             LinearProgressIndicator(
-                modifier = Modifier.align(BiasAlignment(0.0f, 0.9f,)),
-                color = Color.White,
+                modifier = Modifier.align(BiasAlignment(0.0f, 0.9f)),
+                color = Color.White
             )
         }
     }

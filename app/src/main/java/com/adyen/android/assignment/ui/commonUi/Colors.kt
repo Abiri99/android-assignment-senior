@@ -1,4 +1,4 @@
-package com.adyen.android.assignment.ui.common_ui
+package com.adyen.android.assignment.ui.commonUi
 
 import androidx.compose.ui.graphics.Color
 

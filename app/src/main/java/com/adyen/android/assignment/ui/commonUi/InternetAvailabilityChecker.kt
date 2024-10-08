@@ -1,15 +1,14 @@
-package com.adyen.android.assignment.ui.common_ui
+package com.adyen.android.assignment.ui.commonUi
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.adyen.android.assignment.ui.util.ConnectivityUtils
 
 @Composable
 fun InternetAvailabilityChecker(
     onAvailable: () -> Unit,
-    onUnavailable: (String) -> Unit,
+    onUnavailable: (String) -> Unit
 ) {
     val context = LocalContext.current
 

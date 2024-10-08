@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("org.jlleitschuh.gradle.ktlint")
+    id("io.gitlab.arturbosch.detekt")
 }
 
 android {
@@ -50,6 +52,10 @@ android {
     }
 }
 
+tasks.withType<JavaCompile> {
+    dependsOn("ktlintFormat")
+}
+
 // TODO: remove unused dependencies
 dependencies {
     implementation(libs.androidx.core.ktx)
@@ -61,8 +67,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    implementation (libs.retrofit)
-    implementation (libs.converter.moshi)
+    implementation(libs.retrofit)
+    implementation(libs.converter.moshi)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

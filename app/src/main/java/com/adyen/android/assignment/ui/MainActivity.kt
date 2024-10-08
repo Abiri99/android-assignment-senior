@@ -5,17 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.currentRecomposeScope
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.adyen.android.assignment.AssignmentApplication
-import com.adyen.android.assignment.data.api.model.Place
 import com.adyen.android.assignment.data.repository.PlacesRepository
 import com.adyen.android.assignment.ui.places.PlacesScreen
 import com.adyen.android.assignment.ui.splash.SplashScreen
@@ -57,7 +53,7 @@ class MainActivity : ComponentActivity() {
                             navController.navigate("places") {
                                 popUpTo("splash") { inclusive = true }
                             }
-                        },
+                        }
                     )
                 }
 

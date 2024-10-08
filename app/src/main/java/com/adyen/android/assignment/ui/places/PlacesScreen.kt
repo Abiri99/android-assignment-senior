@@ -9,32 +9,31 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.adyen.android.assignment.ui.common_ui.Colors
 import com.adyen.android.assignment.data.api.model.Place
+import com.adyen.android.assignment.ui.commonUi.Colors
 
 @Composable
 fun PlacesScreen(
     modifier: Modifier = Modifier,
-    getCachedPlacesCallback: () -> List<Place>,
+    getCachedPlacesCallback: () -> List<Place>
 ) {
     val places = remember(Unit) { getCachedPlacesCallback() }
 
     if (places.isNotEmpty()) {
         PlacesList(
             modifier,
-            list = places,
+            list = places
         )
     } else {
         Box(
             modifier = modifier,
-            contentAlignment = Alignment.Center,
+            contentAlignment = Alignment.Center
         ) {
             Text("No places found!")
         }
@@ -44,17 +43,17 @@ fun PlacesScreen(
 @Composable
 private fun PlacesList(
     modifier: Modifier = Modifier,
-    list: List<Place>,
+    list: List<Place>
 ) {
     val contentModifier = Modifier.padding(
         horizontal = 16.dp,
-        vertical = 8.dp,
+        vertical = 8.dp
     )
 
     LazyColumn(
         modifier = modifier,
         verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         item(key = 1) {
             Text(
@@ -62,13 +61,13 @@ private fun PlacesList(
                 color = Colors.textColorDark,
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
-                modifier = contentModifier,
+                modifier = contentModifier
             )
         }
 
         items(
             list.size,
-            key = { index -> list[index].fsq_id },
+            key = { index -> list[index].fsq_id }
         ) { index ->
             val place = list[index]
 
@@ -76,8 +75,8 @@ private fun PlacesList(
                 shape = RoundedCornerShape(8.dp),
                 elevation = CardDefaults.cardElevation(
                     defaultElevation = 8.dp,
-                    pressedElevation = 16.dp,
-                ),
+                    pressedElevation = 16.dp
+                )
             ) {
                 Text(place.name)
             }

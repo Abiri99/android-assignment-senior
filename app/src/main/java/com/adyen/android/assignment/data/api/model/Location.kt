@@ -6,5 +6,5 @@ data class Location(
     val locality: String,
     val neighbourhood: List<String>,
     val postcode: String,
-    val region: String,
+    val region: String
 )

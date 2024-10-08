@@ -6,5 +6,5 @@ data class GeoCode(
 
 data class Main(
     val latitude: Double,
-    val longitude: Double,
+    val longitude: Double
 )

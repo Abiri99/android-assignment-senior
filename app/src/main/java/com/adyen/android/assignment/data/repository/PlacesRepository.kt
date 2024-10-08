@@ -9,7 +9,7 @@ import kotlinx.coroutines.withContext
 
 class PlacesRepository(
     private val placesService: PlacesService,
-    private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO,
+    private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
     @Volatile
     private var cachedPlaces: List<Place>? = null
@@ -48,7 +48,7 @@ class PlacesRepository(
         }
 }
 
-class EmptyResponseBodyHttpException: Exception()
-class BadRequestHttpException: Exception()
-class UnauthorizedHttpException: Exception()
-class HttpException(val errorCode: Int, override val message: String): Exception()
+class EmptyResponseBodyHttpException : Exception()
+class BadRequestHttpException : Exception()
+class UnauthorizedHttpException : Exception()
+class HttpException(val errorCode: Int, override val message: String) : Exception()
