@@ -7,8 +7,8 @@ import com.adyen.android.assignment.domain.CategorizeAndSortPlacesUseCase
 
 class AssignmentApplication : Application() {
 
-    // Getting an instance of PlacesService here with the assumption that the
-    // lifecycle of this object is in the scope of application.
+    // Below are the dependencies that are bound to the lifecycle of the App
+
     private val placesService = PlacesService.instance
 
     val categorizeAndSortPlacesUseCase = CategorizeAndSortPlacesUseCase()
