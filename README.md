@@ -1,3 +1,9 @@
+# Result
+![Screen Recording](assets/screen_recording.gif)
+![](assets/screenshot1.png)
+![](assets/screenshot2.png)
+![](assets/screenshot3.png)
+
 # Adyen Android Assignment
 
 This repository contains the coding challenge for candidates applying for a Senior Android role at Adyen.
