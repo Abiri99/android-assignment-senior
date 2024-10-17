@@ -2,54 +2,41 @@ package com.adyen.android.assignment.data.repository
 
 import com.adyen.android.assignment.data.api.PlacesService
 import com.adyen.android.assignment.data.api.VenueRecommendationsQueryBuilder
-import com.adyen.android.assignment.data.api.model.Place
+import com.adyen.android.assignment.data.api.model.PlacesResponse
+import com.adyen.android.assignment.data.service.LocationService
+import com.adyen.android.assignment.data.service.NetworkService
+import com.adyen.android.assignment.domain.NoNetworkAvailableException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 
 class PlacesRepository(
+    private val locationService: LocationService,
+    private val networkService: NetworkService,
     private val placesService: PlacesService,
+    private val retrofitApiHandler: RetrofitApiHandler,
     private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
-    @Volatile // @Volatile seems enough in this case. No need for more strict thread safety approach for now.
-    private var cachedPlaces: List<Place>? = null
-
-    fun getCachedPlaces(): List<Place> {
-        return requireNotNull(cachedPlaces) {
-            "Places are not cached. Try to call `fetchPlacesNearby` method first."
-        }
-    }
-
-    // Nice to have in future: Checking if the coroutine is cancelled in the method
-    suspend fun fetchPlacesNearby(latitude: Double, longitude: Double): List<Place> =
-        withContext(coroutineDispatcher) {
-            val query = VenueRecommendationsQueryBuilder()
-                .setLatitudeLongitude(latitude, longitude)
-                .build()
-            val response = placesService.getPlacesNearby(query)
-            if (response.isSuccessful) {
-                // HTTP 200 code
-                val responseBody = response.body()
-                val result = responseBody?.results ?: throw EmptyResponseBodyHttpException()
-                cachedPlaces = result
-                result
+    suspend fun observePlacesNearby(): Flow<Result<PlacesResponse>> = locationService
+        .getUserLocation()
+        .map { locationResult ->
+            if (!networkService.isAvailable()) {
+                Result.failure(NoNetworkAvailableException)
             } else {
-                // Manage error code 400 bad request
-                if (response.code() == 400) {
-                    throw BadRequestHttpException()
-                }
+                locationResult.fold(
+                    onSuccess = { locationPair ->
+                        val query = VenueRecommendationsQueryBuilder()
+                            .setLatitudeLongitude(locationPair.first, locationPair.second)
+                            .build()
 
-                // Manage error code 401 unauthorized
-                if (response.code() == 401) {
-                    throw UnauthorizedHttpException()
-                }
-
-                throw HttpException(errorCode = response.code(), response.message())
+                        retrofitApiHandler.getData(placesService.getPlacesNearby(query))
+                    },
+                    onFailure = { exception ->
+                        Result.failure(exception)
+                    }
+                )
             }
-        }
+        }.flowOn(coroutineDispatcher)
 }
-
-class EmptyResponseBodyHttpException : Exception()
-class BadRequestHttpException : Exception()
-class UnauthorizedHttpException : Exception()
-class HttpException(val errorCode: Int, override val message: String) : Exception()

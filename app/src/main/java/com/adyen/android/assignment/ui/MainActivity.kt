@@ -19,8 +19,6 @@ import com.adyen.android.assignment.ui.places.PlacesScreen
 import com.adyen.android.assignment.ui.places.PlacesViewModel
 import com.adyen.android.assignment.ui.places.PlacesViewModelFactory
 import com.adyen.android.assignment.ui.splash.SplashScreen
-import com.adyen.android.assignment.ui.splash.SplashViewModel
-import com.adyen.android.assignment.ui.splash.SplashViewModelFactory
 
 class MainActivity : ComponentActivity() {
     private lateinit var categorizeAndSortPlacesUseCase: CategorizeAndSortPlacesUseCase
