@@ -5,9 +5,12 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.provider.Settings
 import androidx.core.content.getSystemService
-import com.adyen.android.assignment.ui.util.ConnectivityUtils
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class NetworkService(private val context: Context) {
+class NetworkService @Inject constructor(
+    @ApplicationContext private val context: Context
+) {
     fun isAvailable(): Boolean {
         return isInternetAvailable() && !isAirplaneModeOn()
     }

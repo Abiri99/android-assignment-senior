@@ -4,9 +4,10 @@ import com.adyen.android.assignment.domain.ExceptionHandler
 import com.adyen.android.assignment.domain.FatalException
 import com.adyen.android.assignment.domain.HttpException
 import retrofit2.Response
+import javax.inject.Inject
 
-class RetrofitApiHandler(
-    private val exceptionHandler: ExceptionHandler,
+class RetrofitApiHandler @Inject constructor(
+    private val exceptionHandler: ExceptionHandler
 ) {
     fun <D> getData(response: Response<D>): Result<D> {
         return if (response.isSuccessful) {

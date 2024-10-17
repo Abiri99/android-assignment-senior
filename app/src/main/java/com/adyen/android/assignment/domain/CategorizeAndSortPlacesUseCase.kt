@@ -1,9 +1,10 @@
 package com.adyen.android.assignment.domain
 
 import com.adyen.android.assignment.data.api.model.Place
+import javax.inject.Inject
 
 // Since this UseCase is only used by the PlacesViewModel, it could be a method inside the PlacesViewModel as well.
-class CategorizeAndSortPlacesUseCase {
+class CategorizeAndSortPlacesUseCase @Inject constructor() {
     fun execute(places: List<Place>): Map<String, List<Place>> {
         val result = mutableMapOf<String, MutableList<Place>>()
 
